@@ -1,7 +1,7 @@
 import * as webpack from "webpack";
-import path = require("path");
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
-import * as CopyPlugin from "copy-webpack-plugin";
+import CopyPlugin from "copy-webpack-plugin";
+import path from "path";
 
 const r = (file: string) => path.resolve(__dirname, file);
 
