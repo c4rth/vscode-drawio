@@ -22,8 +22,3 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
       - run: yarn build
-      - run: yarn run-script pub
-        env:
-          MARKETPLACE_TOKEN: ${{ secrets.MARKETPLACE_TOKEN }}
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          OPEN_VSX_TOKEN: ${{ secrets.OPEN_VSX_TOKEN }}

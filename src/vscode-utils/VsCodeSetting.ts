@@ -101,7 +101,7 @@ class VsCodeSettingResource {
 		private readonly id: string,
 		private readonly scope: Uri | undefined,
 		private readonly target: ConfigurationTarget | undefined
-	) {}
+	) { }
 
 	private readValue(): any {
 		const config = workspace.getConfiguration(undefined, this.scope);
@@ -144,7 +144,7 @@ class VsCodeSettingResource {
 }
 
 workspace.onDidChangeConfiguration(() => {
-	runInAction("Update Configuration", () => {
+	runInAction(() => {
 		VsCodeSettingResource.onConfigChange.emit();
 	});
 });

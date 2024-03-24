@@ -122,7 +122,7 @@ export class DrawioClient<
 		} else if (drawioEvt.event === "save") {
 			const oldXml = this.currentXml;
 			this.currentXml = drawioEvt.xml;
-			if (oldXml != this.currentXml) {
+			if (oldXml !== this.currentXml) {
 				// a little bit hacky.
 				// If "save" does trigger a change,
 				// treat save as autosave and don't actually save the file.

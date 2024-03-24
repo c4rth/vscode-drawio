@@ -650,7 +650,7 @@ export class DiagramConfig {
 		public readonly uri: Uri,
 		private readonly config: Config,
 		private readonly memento: Memento
-	) {}
+	) { }
 
 	@computed
 	public get drawioLanguage(): string {
@@ -666,15 +666,15 @@ export class DiagramConfig {
 
 type DrawioCustomLibrary = (
 	| {
-			xml: string;
-	  }
+		xml: string;
+	}
 	| {
-			url: string;
-	  }
+		url: string;
+	}
 	| {
-			json: string;
-	  }
+		json: string;
+	}
 	| {
-			file: string;
-	  }
+		file: string;
+	}
 ) & { libName: string; entryId: string };

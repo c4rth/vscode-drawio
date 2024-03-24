@@ -8,7 +8,7 @@ export function registerFailableCommand(
 		try {
 			return await commandFn(...args);
 		} catch (e) {
-			window.showErrorMessage("The command failed: " + e.message);
+			window.showErrorMessage("The command failed: " + e);
 			return false;
 		}
 	});

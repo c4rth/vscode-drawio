@@ -8,11 +8,11 @@ import {
 	workspace,
 	WorkspaceEdit,
 } from "vscode";
-import formatter = require("xml-formatter");
+import xmlFormat from 'xml-formatter';
 import { DrawioEditorService } from "./DrawioEditorService";
 
 export class DrawioEditorProviderText implements CustomTextEditorProvider {
-	constructor(private readonly drawioEditorService: DrawioEditorService) {}
+	constructor(private readonly drawioEditorService: DrawioEditorService) { }
 
 	public async resolveCustomTextEditor(
 		document: TextDocument,
@@ -86,7 +86,7 @@ export class DrawioEditorProviderText implements CustomTextEditorProvider {
 							() => `<svg host="65bd71144e" `
 						);
 
-						return formatter(newXml);
+						return xmlFormat(newXml);
 					} else {
 						if (newXml.startsWith('<mxfile host="')) {
 							newXml = newXml.replace(
@@ -106,7 +106,7 @@ export class DrawioEditorProviderText implements CustomTextEditorProvider {
 								);
 						}
 
-						return formatter(
+						return xmlFormat(
 							// This normalizes the host
 							newXml
 						);

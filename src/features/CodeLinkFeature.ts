@@ -88,11 +88,10 @@ export class LinkCodeWithSelectedNodeService {
 							toggleCodeLinkActivationCommandName;
 
 						if (activeEditor) {
-							this.statusBar.text = `$(link) ${
-								activeEditor.config.codeLinkActivated
-									? "$(circle-filled)"
-									: "$(circle-outline)"
-							} Code Link`;
+							this.statusBar.text = `$(link) ${activeEditor.config.codeLinkActivated
+								? "$(circle-filled)"
+								: "$(circle-outline)"
+								} Code Link`;
 							this.statusBar.show();
 						} else {
 							this.statusBar.hide();
@@ -201,7 +200,7 @@ export class LinkCodeWithSelectedNodeService {
 			return;
 		}
 		const editor = window.activeTextEditor;
-		if (editor == undefined) {
+		if (editor === undefined) {
 			window.showErrorMessage("No text editor active.");
 			return;
 		}
@@ -230,7 +229,7 @@ export class LinkCodeWithSelectedNodeService {
 					);
 				}
 				// Add the symbol and descend into children
-				let curpath = path == "" ? x.name : `${path}.${x.name}`;
+				let curpath = path === "" ? x.name : `${path}.${x.name}`;
 				if (intersectSelection) {
 					items.push(<QuickPickItem>{
 						label: `$(${symbolNameMap[x.kind]}) ${x.name}`,
@@ -249,7 +248,9 @@ export class LinkCodeWithSelectedNodeService {
 				placeHolder: `Choose symbol from ${path.basename(uri.fsPath)}`,
 			})
 			.then(async (v) => {
-				if (v == undefined) return;
+				if (v === undefined) {
+					return;
+				}
 				const pos: CodePosition = new CodePosition(
 					storeTopLevelSymbol ? undefined : uri,
 					v.detail
@@ -386,16 +387,19 @@ class CodePosition {
 				return new DeserializedCodePosition(uri, range);
 			} else if ("symbol" in data) {
 				let range = await resolveSymbol(uri, data.symbol);
-				if (range == undefined)
+				if (range === undefined) {
 					throw new Error(
 						`Cannot find symbol by path: ${data.symbol}. Maybe you need to load the symbols by opening at least one of its code files?`
 					);
+				}
 				return new DeserializedCodePosition(uri, range);
 			}
 			return new DeserializedCodePosition(uri, undefined);
 		} else if ("symbol" in data) {
 			let pos = await resolveTopSymbol(data.symbol);
-			if (pos) return pos;
+			if (pos) {
+				return pos;
+			}
 			throw new Error(
 				`Cannot find symbol by path: ${data.symbol}. Maybe you need to load the symbols by opening at least one of its code files?`
 			);
@@ -412,7 +416,7 @@ class CodePosition {
 	) {
 		if (obj instanceof Range) {
 			this.range = obj as Range;
-		} else if (typeof obj == "string") {
+		} else if (typeof obj === "string") {
 			this.symbol = obj as string;
 		}
 	}
@@ -454,7 +458,7 @@ class CodePosition {
 
 // CodePosition after deserializing (from Data object)
 class DeserializedCodePosition {
-	constructor(public readonly uri: Uri, public readonly range?: Range) {}
+	constructor(public readonly uri: Uri, public readonly range?: Range) { }
 	public serialize(relativeTo: Uri): Data {
 		return new CodePosition(this.uri, this.range).serialize(relativeTo);
 	}
@@ -463,15 +467,15 @@ class DeserializedCodePosition {
 type Data = {
 	path: string | undefined;
 } & (
-	| {}
-	| {
+		| {}
+		| {
 			start: PositionData;
 			end: PositionData;
-	  }
-	| {
+		}
+		| {
 			symbol: string;
-	  }
-);
+		}
+	);
 
 interface PositionData {
 	line: number;
@@ -495,11 +499,17 @@ async function resolveSymbol(
 	let treePath = path.split(".");
 	let cur: DocumentSymbol[] | undefined = result;
 	for (let i = 0; i < treePath.length; i++) {
-		if (cur == undefined) break;
-		cur = cur.filter((x) => x.name == treePath[i]);
-		if (i < treePath.length - 1) cur = cur[0]?.children;
+		if (cur === undefined) {
+			break;
+		}
+		cur = cur.filter((x) => x.name === treePath[i]);
+		if (i < treePath.length - 1) {
+			cur = cur[0]?.children;
+		}
 	}
-	if (cur == undefined || cur.length == 0) return undefined;
+	if (cur === undefined || cur.length === 0) {
+		return undefined;
+	}
 	return cur[0].selectionRange;
 }
 
@@ -507,13 +517,19 @@ async function resolveTopSymbol(
 	path: string
 ): Promise<DeserializedCodePosition | undefined> {
 	let res = path.split(".");
-	if (res.length == 0) return undefined;
+	if (res.length === 0) {
+		return undefined;
+	}
 	// res.length > 0
 	let symb = await resolveWorkspaceSymbol(res[0]);
-	if (!symb) return undefined;
-	if (res.length == 2) {
+	if (!symb) {
+		return undefined;
+	}
+	if (res.length === 2) {
 		const range = await resolveSymbol(symb.uri, path);
-		if (range) symb = new DeserializedCodePosition(symb.uri, range);
+		if (range) {
+			symb = new DeserializedCodePosition(symb.uri, range);
+		}
 	}
 	return symb;
 }
@@ -525,7 +541,9 @@ async function resolveWorkspaceSymbol(
 		"vscode.executeWorkspaceSymbolProvider",
 		symbolName
 	)) as SymbolInformation[];
-	for (let x of result) console.log(x.name);
+	for (let x of result) {
+		console.log(x.name);
+	}
 	const filtered = result
 		.filter((r) => r.name === symbolName)
 		.sort(
