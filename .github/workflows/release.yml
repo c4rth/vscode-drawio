@@ -12,10 +12,6 @@ jobs:
         uses: actions/checkout@v2
         with:
           submodules: true
-      - name: Install Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: "14"
       - run: yarn install --immutable
       - run: yarn lint
       - run: yarn run-script prepare-insiders-build
