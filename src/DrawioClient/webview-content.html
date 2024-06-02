@@ -15,6 +15,10 @@
 				sendToVsCode({ event: "log", body: msg });
 			};
 
+			alert = function(msg) {
+				sendToVsCode({ event: "alert", body: msg });
+			};
+
 			// Fix draw.io tries to access unavailable localStorage
 			// Replace it with a bridged version
 			const storage = $$localStorage$$;
@@ -115,6 +119,8 @@
 			},
 		};
 
+		var mxIsElectron = false;
+
 		// Checks for local storage
 		var isLocalStorage = true;
 
@@ -166,7 +172,6 @@
 			}
 		}
 	</script>
-	<link rel="stylesheet" type="text/css" href="js/croppie/croppie.min.css" />
 	<link rel="stylesheet" type="text/css" href="styles/grapheditor.css" />
 	<link rel="manifest" href="images/manifest.json" />
 	<style type="text/css">
@@ -262,6 +267,14 @@
 	</div>
 	<script type="text/javascript">
 		(() => {
+
+			console.log("mxIsElectron: " + mxIsElectron);
+
+			var mxIsElectron = navigator.userAgent != null && navigator.userAgent.toLowerCase().indexOf(' electron/') > -1 && 
+							navigator.userAgent.indexOf(' draw.io/') > -1;
+
+			console.log("mxIsElectron: " + mxIsElectron);
+
 			function patchFn(clazz, fnName, fnFactory) {
 				var old = clazz[fnName];
 				clazz[fnName] = fnFactory(old);
