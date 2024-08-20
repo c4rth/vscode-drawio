@@ -375,6 +375,7 @@ export class DiagramConfig {
 			[ColorThemeKind.Light]: "Kennedy",
 			[ColorThemeKind.Dark]: "dark",
 			[ColorThemeKind.HighContrast]: "Kennedy",
+			[ColorThemeKind.HighContrastLight]: "Kennedy",
 		}[this.config.vscodeTheme.kind];
 	}
 

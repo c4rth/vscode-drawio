@@ -26,15 +26,10 @@
 		"workspace"
 	],
 	"engines": {
-		"vscode": "^1.46.0"
+		"vscode": "^1.86.0"
 	},
 	"categories": [
 		"Visualization"
-	],
-	"activationEvents": [
-		"onCustomEditor:hediet.vscode-drawio",
-		"onCustomEditor:hediet.vscode-drawio-text",
-		"onCommand:hediet.vscode-drawio.newDiagram"
 	],
 	"repository": {
 		"url": "https://github.com/hediet/vscode-drawio.git"
@@ -457,20 +452,20 @@
 		"@actions/github": "^6.0.0",
 		"@hediet/semver": "^0.2.1",
 		"@types/mithril": "^2.0.4",
-		"@types/node": "^13.13.5",
-		"@types/vscode": "1.46.0",
+		"@types/node": "^18.17.5",
+		"@types/vscode": "1.86.0",
 		"@types/xml-formatter": "^2.1.1",
 		"@typescript-eslint/eslint-plugin": "^7.3.1",
 		"@typescript-eslint/parser": "^7.3.1",
 		"@vscode/vsce": "^2.15.0",
 		"clean-webpack-plugin": "^4.0.0-alpha.0",
 		"copy-webpack-plugin": "^12.0.2",
-		"css-loader": "^6.10.0",
+		"css-loader": "^7.1.2",
 		"eslint": "^8.57.0",
 		"eslint-config-prettier": "^9.1.0",
-		"prettier": "^3.2.5",
+		"prettier": "^3.3.0",
 		"raw-loader": "^4.0.1",
-		"style-loader": "^3.3.4",
+		"style-loader": "^4.0.0",
 		"ts-loader": "^9.2.3",
 		"ts-node": "^10.1.0",
 		"typescript": "^5.4.3",
@@ -484,7 +479,7 @@
 		"buffer": "^6.0.3",
 		"js-sha256": "^0.9.0",
 		"mithril": "^2.2.2",
-		"mobx": "6.12.1",
+		"mobx": "6.12.3",
 		"mobx-utils": "6.0.8",
 		"path-browserify": "^1.0.1",
 		"vsls": "^1.0.4753",
