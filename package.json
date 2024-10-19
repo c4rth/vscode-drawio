@@ -26,7 +26,7 @@
         "workspace"
     ],
     "engines": {
-        "vscode": "^1.86.0"
+        "vscode": "^1.94.0"
     },
     "categories": [
         "Visualization"
@@ -453,7 +453,7 @@
         "@hediet/semver": "^0.2.1",
         "@types/mithril": "^2.0.4",
         "@types/node": "^18.17.5",
-        "@types/vscode": "1.86.0",
+        "@types/vscode": "1.94.0",
         "@types/xml-formatter": "^2.1.1",
         "@typescript-eslint/eslint-plugin": "^7.3.1",
         "@typescript-eslint/parser": "^7.3.1",
@@ -486,5 +486,5 @@
         "xml-formatter": "^3.6.2",
         "xml-parser-xo": "^4.1.1"
     },
-    "versionName": "1.6.9"
+    "versionName": "1.6.10"
 }
